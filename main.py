@@ -1,6 +1,6 @@
-import view
+import controller
 
-a = view.App()
+controller.init()
 
 while 1:
-    a.gameStep()
+    controller.gameStep()
