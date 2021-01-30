@@ -7,13 +7,13 @@ import random
 a = view.App()
 
 def init():
-    for x in range(0, int(view.windowWidth/view.windowScaleFactor)):
+    for i, x in enumerate(range(0, int(view.windowWidth/view.windowScaleFactor))):
         model.cellMap.append([])
         for y in range(0, int(view.windowHeight/view.windowScaleFactor)):
             model.cellMap[x].append(model.Cell(x,y))
-    x = random.randint(1, view.windowWidth/view.windowScaleFactor - 1)
-    y = random.randint(1, view.windowHeight/view.windowScaleFactor - 1)
-    initTable = [(-1, -1), (0, -1), (1, -1), (-1, 0), (1, 0), (-1, 1), (0, 1), (1, 1)]
+    x = random.randint(1, view.windowWidth/view.windowScaleFactor - 2)
+    y = random.randint(1, view.windowHeight/view.windowScaleFactor - 2)
+    initTable = model.NEIGHBOUR_OFFSETS[:]
     initCells = [(x, y)]
     for i in range(random.randint(3,8)):
         offset = initTable.pop(random.randint(0, len(initTable) - 1))

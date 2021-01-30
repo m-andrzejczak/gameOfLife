@@ -1,8 +1,6 @@
 import pygame
 import thorpy
-import model
 
-gameOn = True
 windowWidth, windowHeight, windowScaleFactor = 500, 500, 10
 
 class App:
@@ -10,13 +8,17 @@ class App:
         pygame.init()
         self.window = pygame.display.set_mode((windowWidth, windowHeight))
         self.window.fill((100, 100, 100))
+        self.drawGrid()
+
+    def drawGrid(self):
         for i in range(0, windowWidth, windowScaleFactor):
             pygame.draw.line(self.window, (150, 150, 150), (i, 0), (i, windowHeight))
         for i in range(0, windowHeight, windowScaleFactor):
             pygame.draw.line(self.window, (150, 150, 150), (0, i), (windowWidth, i))
-        pygame.display.flip()
 
     def redrawCells(self, cells: list[(int, int)]):
+        self.window.fill((100, 100, 100))
+        self.drawGrid()
         cWidth = int(windowScaleFactor - windowScaleFactor * 0.3)
         cHeight = cWidth
         for c in cells:
