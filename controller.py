@@ -3,6 +3,7 @@ import view
 import pygame
 import sys
 import random
+import thorpy
 
 a = view.App()
 
@@ -22,7 +23,13 @@ def init():
         model.cellMap[cell[0]][cell[1]].alive = True
 
 def gameStep():
-    a.redrawCells(model.updateGrid())
+    a.gameClock.tick(30)
+    if model.gameInProgress:
+        a.redrawCells(model.updateGrid())
+    else:
+        a.showMenu()
     for e in pygame.event.get():
         if e.type == pygame.QUIT:
             sys.exit(0)
+        if not model.gameInProgress:
+            a.menu.react(e)

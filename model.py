@@ -40,6 +40,7 @@ class Cell:
 
 cellMap = [[]]
 NEIGHBOUR_OFFSETS = [(-1, -1), (0, -1), (1, -1), (-1, 0), (1, 0), (-1, 1), (0, 1), (1, 1)]
+gameInProgress = False
 
 def updateGrid() -> list[(int, int)]:
     aliveCells = []
