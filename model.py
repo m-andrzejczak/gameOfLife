@@ -34,9 +34,45 @@ class Cell:
         neighboursAlive = self.checkNeighbours()
         if neighboursAlive == 3:
             self.alive = True
-        elif neighboursAlive < 2 or neighboursAlive > 4:
+        elif neighboursAlive < 2 or neighboursAlive > 3:
             self.alive = False
         return self.alive
+
+class Cursor:
+    def __init__(self, gridWidth: int, gridHeight: int):
+        self.x = 0
+        self.y = 0
+        self.chosenCells = []
+        self.gridDimensions = (gridWidth, gridHeight)
+
+    def addOrRemove(self):
+        tmp = (self.x, self.y)
+        if (self.x, self.y) in self.chosenCells:
+            self.chosenCells.remove(tmp)
+        else:
+
+            self.chosenCells.append(tmp)
+
+    def moveDown(self):
+        if self.y < self.gridDimensions[1]:
+            self.y += 1
+        return self.x, self.y
+
+    def moveUp(self):
+        if self.y > 0:
+            self.y -= 1
+        return self.x, self.y
+
+    def moveLeft(self):
+        if self.x > 0:
+            self.x -= 1
+        return self.x, self.y
+
+    def moveRight(self):
+        if self.x < self.gridDimensions[0]:
+            self.x += 1
+        return self.x, self.y
+
 
 cellMap = [[]]
 NEIGHBOUR_OFFSETS = [(-1, -1), (0, -1), (1, -1), (-1, 0), (1, 0), (-1, 1), (0, 1), (1, 1)]
